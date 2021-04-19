@@ -35,7 +35,7 @@ const {
   expect,
 } = require("../../utils/DaoFactory.js");
 
-describe("Extension - NFT", () => {
+contract("Extension - NFT",  (accounts) => {
   const daoOwner = accounts[0];
 
   before("deploy dao", async () => {

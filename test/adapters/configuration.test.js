@@ -32,19 +32,19 @@ const {
   revertChainSnapshot,
   proposalIdGenerator,
   advanceTime,
-  accounts,
   expectRevert,
   expect,
 } = require("../../utils/DaoFactory.js");
 
-const owner = accounts[1];
-const proposalCounter = proposalIdGenerator().generator;
+contract("Adapter - Configuration", (accounts) => {
+  const owner = accounts[1];
 
-function getProposalCounter() {
-  return proposalCounter().next().value;
-}
+  const proposalCounter = proposalIdGenerator().generator;
 
-describe("Adapter - Configuration", () => {
+  function getProposalCounter() {
+    return proposalCounter().next().value;
+  }
+
   before("deploy dao", async () => {
     const { dao, adapters, extensions } = await deployDefaultDao(owner);
     this.dao = dao;

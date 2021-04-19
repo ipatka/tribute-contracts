@@ -54,7 +54,7 @@ function getProposalCounter() {
   return proposalCounter().next().value;
 }
 
-describe("Adapter - Onboarding", () => {
+contract("Adapter - Onboarding",  (accounts) => {
   before("deploy dao", async () => {
     const { dao, adapters, extensions } = await deployDefaultDao(daoOwner);
     this.dao = dao;

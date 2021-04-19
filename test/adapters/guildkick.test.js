@@ -37,7 +37,6 @@ const {
   takeChainSnapshot,
   revertChainSnapshot,
   proposalIdGenerator,
-  accounts,
   sharePrice,
   GUILD,
   ETH_TOKEN,
@@ -54,14 +53,14 @@ const {
   guildKickProposal,
 } = require("../../utils/TestUtils.js");
 
-const owner = accounts[1];
-const proposalCounter = proposalIdGenerator().generator;
+contract("Adapter - GuildKick", (accounts) => {
+  const owner = accounts[1];
+  const proposalCounter = proposalIdGenerator().generator;
 
-function getProposalCounter() {
-  return proposalCounter().next().value;
-}
+  function getProposalCounter() {
+    return proposalCounter().next().value;
+  }
 
-describe("Adapter - GuildKick", () => {
   before("deploy dao", async () => {
     const { dao, adapters, extensions } = await deployDefaultDao(owner);
     this.dao = dao;

@@ -42,7 +42,7 @@ const subgraphName = "moloch-v3";
 import { getYAML } from "./helpers/YAML";
 
 // Test
-describe("Dao and Bank Creation", function () {
+contract("Dao and Bank Creation", function () {
   let daoRegistry: DaoRegistry;
   let daoFactory: DaoFactory;
 

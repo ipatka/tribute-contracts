@@ -43,7 +43,7 @@ const {
 
 const { onboardingNewMember } = require("../../utils/TestUtils.js");
 
-describe("Adapter - TributeNFT", () => {
+contract("Adapter - TributeNFT",  (accounts) => {
   const proposalCounter = proposalIdGenerator().generator;
   const daoOwner = accounts[1];
 

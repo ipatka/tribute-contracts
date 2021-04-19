@@ -19,12 +19,17 @@
   },
   "devDependencies": {
     "@nomiclabs/buidler": "^1.4.8",
+    "@nomiclabs/hardhat-solhint": "^2.0.0",
+    "@nomiclabs/hardhat-truffle5": "^2.0.0",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "@openzeppelin/docs-utils": "^0.1.0",
     "@openzeppelin/test-environment": "^0.1.9",
     "@openzeppelin/test-helpers": "^0.5.10",
     "@smartdec/smartcheck": "^2.0.1",
     "chai": "^4.3.4",
     "dotenv": "^8.2.0",
     "eth-gas-reporter": "^0.2.22",
+    "hardhat": "^2.2.0",
     "install": "^0.13.0",
     "jest": "^26.6.3",
     "mocha": "^8.3.2",
@@ -39,12 +44,16 @@
   },
   "scripts": {
     "compile": "truffle compile",
+    "compile2": "hardhat compile",
     "coverage": "scripts/coverage.js",
+    "coverage2": "hardhat coverage",
     "ganache": "ganache-cli --deterministic -p 8545 --networkId 1337",
     "lint": "prettier --list-different 'contracts/**/*.sol' 'test/**/*.test.js' '**/*.md'",
     "lint:fix": "prettier --write 'contracts/**/*.sol' 'test/**/*.test.js' '**/*.md'",
     "migrate": "truffle migrate --network",
-    "test": "mocha --timeout 20000 --exit --recursive"
+    "prepublish": "rimraf build artifacts cache bin",
+    "test": "mocha --timeout 20000 --exit --recursive",
+    "test2": "hardhat test"
   },
   "repository": {
     "type": "git",

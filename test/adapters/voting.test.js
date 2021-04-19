@@ -39,7 +39,7 @@ const {
   expect,
 } = require("../../utils/DaoFactory.js");
 
-describe("Adapter - Voting", () => {
+contract("Adapter - Voting",  (accounts) => {
   const daoOwner = accounts[1];
   const proposalCounter = proposalIdGenerator().generator;
 

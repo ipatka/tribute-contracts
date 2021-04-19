@@ -30,7 +30,6 @@ const {
   deployDefaultDao,
   takeChainSnapshot,
   revertChainSnapshot,
-  accounts,
   GUILD,
   SHARES,
   ETH_TOKEN,
@@ -45,14 +44,14 @@ const {
   getMessageERC712Hash,
 } = require("../../utils/offchain_voting.js");
 
-const signer = {
-  address: "0x7D8cad0bbD68deb352C33e80fccd4D8e88b4aBb8",
-  privKey: "c150429d49e8799f119434acd3f816f299a5c7e3891455ee12269cb47a5f987c",
-};
+contract("Adapter - Coupon Onboarding ", (accounts) => {
+  const daoOwner = accounts[1];
 
-const daoOwner = accounts[1];
+  const signer = {
+    address: "0x7D8cad0bbD68deb352C33e80fccd4D8e88b4aBb8",
+    privKey: "c150429d49e8799f119434acd3f816f299a5c7e3891455ee12269cb47a5f987c",
+  };
 
-describe("Adapter - Coupon Onboarding ", () => {
   before("deploy dao", async () => {
     const { dao, adapters, extensions } = await deployDefaultDao(daoOwner);
     this.dao = dao;

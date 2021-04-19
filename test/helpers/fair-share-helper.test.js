@@ -27,7 +27,7 @@ const {
   expect,
 } = require("../../utils/DaoFactory.js");
 
-describe("Helper - FairShareHelper", () => {
+contract("Helper - FairShareHelper",  (accounts) => {
   it("should calculate the fair share if the given parameters are valid", async () => {
     const fairShareCalc = await TestFairShareCalc.new();
     const balance = toWei("4.3", "ether");

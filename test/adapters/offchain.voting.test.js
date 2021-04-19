@@ -78,7 +78,7 @@ function getProposalCounter() {
   return proposalCounter().next().value;
 }
 
-describe("Adapter - Offchain Voting", () => {
+contract("Adapter - Offchain Voting",  (accounts) => {
   before("deploy dao", async () => {
     const {
       dao,

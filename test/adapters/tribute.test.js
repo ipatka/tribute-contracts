@@ -41,7 +41,7 @@ const {
 } = require("../../utils/DaoFactory.js");
 const { checkBalance, isMember } = require("../../utils/TestUtils.js");
 
-describe("Adapter - Tribute", () => {
+contract("Adapter - Tribute",  (accounts) => {
   const daoOwner = accounts[1];
   const proposalCounter = proposalIdGenerator().generator;
 

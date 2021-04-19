@@ -25,12 +25,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-const {
-  web3,
-  contract,
-  accounts,
-  provider,
-} = require("@openzeppelin/test-environment");
+const { web3, provider } = require("@openzeppelin/test-environment");
 const { expectRevert } = require("@openzeppelin/test-helpers");
 const { expect } = require("chai");
 
@@ -58,54 +53,50 @@ const remaining = sharePrice.sub(toBN("50000000000000"));
 const maximumChunks = toBN("11");
 
 // Test Util Contracts
-const OLToken = contract.fromArtifact("OLToken");
-const TestToken1 = contract.fromArtifact("TestToken1");
-const TestToken2 = contract.fromArtifact("TestToken2");
-const TestFairShareCalc = contract.fromArtifact("TestFairShareCalc");
-const PixelNFT = contract.fromArtifact("PixelNFT");
+const OLToken = artifacts.require("OLToken");
+const TestToken1 = artifacts.require("TestToken1");
+const TestToken2 = artifacts.require("TestToken2");
+const TestFairShareCalc = artifacts.require("TestFairShareCalc");
+const PixelNFT = artifacts.require("PixelNFT");
 
 // DAO Contracts
-const DaoFactory = contract.fromArtifact("DaoFactory");
-const DaoRegistry = contract.fromArtifact("DaoRegistry");
-const NFTCollectionFactory = contract.fromArtifact("NFTCollectionFactory");
-const BankFactory = contract.fromArtifact("BankFactory");
-const Multicall = contract.fromArtifact("Multicall");
+const DaoFactory = artifacts.require("DaoFactory");
+const DaoRegistry = artifacts.require("DaoRegistry");
+const NFTCollectionFactory = artifacts.require("NFTCollectionFactory");
+const BankFactory = artifacts.require("BankFactory");
+const Multicall = artifacts.require("Multicall");
 
 // Extensions
-const NFTExtension = contract.fromArtifact("NFTExtension");
-const BankExtension = contract.fromArtifact("BankExtension");
+const NFTExtension = artifacts.require("NFTExtension");
+const BankExtension = artifacts.require("BankExtension");
 
 // Config Adapters
-const BankAdapterContract = contract.fromArtifact("BankAdapterContract");
-const NFTAdapterContract = contract.fromArtifact("NFTAdapterContract");
-const ConfigurationContract = contract.fromArtifact("ConfigurationContract");
-const ManagingContract = contract.fromArtifact("ManagingContract");
-const DaoRegistryAdapterContract = contract.fromArtifact(
+const BankAdapterContract = artifacts.require("BankAdapterContract");
+const NFTAdapterContract = artifacts.require("NFTAdapterContract");
+const ConfigurationContract = artifacts.require("ConfigurationContract");
+const ManagingContract = artifacts.require("ManagingContract");
+const DaoRegistryAdapterContract = artifacts.require(
   "DaoRegistryAdapterContract"
 );
 
 // Voting Adapters
-const VotingContract = contract.fromArtifact("VotingContract");
-const OffchainVotingContract = contract.fromArtifact("OffchainVotingContract");
-const KickBadReporterAdapter = contract.fromArtifact("KickBadReporterAdapter");
-const BatchVotingContract = contract.fromArtifact("BatchVotingContract");
-const SnapshotProposalContract = contract.fromArtifact(
-  "SnapshotProposalContract"
-);
+const VotingContract = artifacts.require("VotingContract");
+const OffchainVotingContract = artifacts.require("OffchainVotingContract");
+const KickBadReporterAdapter = artifacts.require("KickBadReporterAdapter");
+const BatchVotingContract = artifacts.require("BatchVotingContract");
+const SnapshotProposalContract = artifacts.require("SnapshotProposalContract");
 
 // Withdraw Adapters
-const RagequitContract = contract.fromArtifact("RagequitContract");
-const GuildKickContract = contract.fromArtifact("GuildKickContract");
-const DistributeContract = contract.fromArtifact("DistributeContract");
+const RagequitContract = artifacts.require("RagequitContract");
+const GuildKickContract = artifacts.require("GuildKickContract");
+const DistributeContract = artifacts.require("DistributeContract");
 
 // Funding/Onboarding Adapters
-const FinancingContract = contract.fromArtifact("FinancingContract");
-const OnboardingContract = contract.fromArtifact("OnboardingContract");
-const TributeContract = contract.fromArtifact("TributeContract");
-const TributeNFTContract = contract.fromArtifact("TributeNFTContract");
-const CouponOnboardingContract = contract.fromArtifact(
-  "CouponOnboardingContract"
-);
+const FinancingContract = artifacts.require("FinancingContract");
+const OnboardingContract = artifacts.require("OnboardingContract");
+const TributeContract = artifacts.require("TributeContract");
+const TributeNFTContract = artifacts.require("TributeNFTContract");
+const CouponOnboardingContract = artifacts.require("CouponOnboardingContract");
 
 const networks = [
   {
@@ -432,6 +423,7 @@ const prepareAdapters = async (deployer) => {
     tributeNFT = await TributeNFTContract.deployed();
   } else {
     voting = await VotingContract.new();
+    VotingContract.setAsDeployed(voting);
     configuration = await ConfigurationContract.new();
     ragequit = await RagequitContract.new();
     managing = await ManagingContract.new();
@@ -699,20 +691,21 @@ const configureDao = async ({
 };
 
 const cloneDao = async (deployer, identityDao, owner, name = "test-dao") => {
-  // The owner of the DAO is always the 1st unlocked address if none is provided
-  let txArgs = {
-    from: owner ? owner : accounts[0],
-  };
-
   let daoFactory;
   if (deployer) {
-    await deployer.deploy(DaoFactory, identityDao.address, txArgs);
+    await deployer.deploy(DaoFactory, identityDao.address, {
+      from: owner,
+    });
     daoFactory = await DaoFactory.deployed();
   } else {
-    daoFactory = await DaoFactory.new(identityDao.address, txArgs);
+    daoFactory = await DaoFactory.new(identityDao.address, {
+      from: owner,
+    });
   }
 
-  await daoFactory.createDao(name, ETH_TOKEN, txArgs);
+  await daoFactory.createDao(name, ETH_TOKEN, {
+    from: owner,
+  });
   // checking the gas usaged to clone a contract
   let pastEvents = await daoFactory.getPastEvents();
   let { _address, _name } = pastEvents[0].returnValues;
@@ -839,6 +832,9 @@ const takeChainSnapshot = async () => {
 };
 
 const revertChainSnapshot = async (snapshotId) => {
+  console.log(`Revert: ${snapshotId}`);
+  if (snapshotId === "0x0") return Promise.resolve();
+
   return await new Promise((resolve, reject) =>
     provider.send(
       {
@@ -992,7 +988,6 @@ module.exports = {
   maximumChunks,
   provider,
   contract,
-  accounts,
   expect,
   expectRevert,
   expect,

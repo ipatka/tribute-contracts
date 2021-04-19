@@ -29,7 +29,7 @@ const {
   expect,
 } = require("../../utils/DaoFactory.js");
 
-describe("Core - DaoFactory", () => {
+contract("Core - DaoFactory",  (accounts) => {
   const owner = accounts[1];
   const anotherOwner = accounts[2];
 

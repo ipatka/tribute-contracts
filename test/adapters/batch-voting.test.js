@@ -49,7 +49,7 @@ const {
   SigUtilSigner,
 } = require("../../utils/offchain_voting.js");
 
-describe("Adapter - BatchVoting", () => {
+contract("Adapter - BatchVoting",  (accounts) => {
   const generateMembers = (amount) => {
     let newAccounts = [];
     for (let i = 0; i < amount; i++) {
