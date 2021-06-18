@@ -30,8 +30,8 @@ const FeatureList = [
     description: (
       <>
         TributeDAO Framework enables the creation of custom extensions to
-        isolate the complexity of DAO core contract, and enhance it with
-        new features.
+        isolate the complexity of DAO core contract, and enhance it with new
+        features.
       </>
     ),
   },

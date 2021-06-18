@@ -3,6 +3,7 @@ id: access-control
 title: Access Control
 description: Docusaurus was designed from the ground up to be easily installed and used to get your website up and running quickly.
 ---
+
 #### Access Control Layer
 
 The Access Control Layer (ACL) is implemented using Access Flags to indicate which permissions an adapter must have in order to access and modify the DAO state. The are 3 main categories of [Access Flags](https://github.com/openlawteam/tribute-contracts/blob/master/docs/core/DaoRegistry.md#access-flags):

@@ -10,10 +10,9 @@ slug: /core
 
 💥 Ready for more? Use **advanced features** like versioning, i18n, search and theme customizations.
 
-💅 Check thefor inspiration and read some [testimonials](https://twitter.com/sebastienlorber/timelines/1392048416872706049)**.
+💅 Check thefor inspiration and read some [testimonials](https://twitter.com/sebastienlorber/timelines/1392048416872706049)\*\*.
 
 🧐 Docusaurus is a **static-site generator**. It builds a **single-page application** with a fast client-side navigation, leveraging the full power of **React** to make your site interactive. It provides out-of-the-box **documentation features**, but can be used to create **any kind of site** (personal website, product, blog, marketing landing pages, etc).
-
 
 ## Fast Track ⏱️ {#fast-track}
 
@@ -49,8 +48,6 @@ Or read the **[5 minutes tutorial](https://docusaurus.sse.codesandbox.io/)** onl
 Docusaurus v2 is **beta** but already quite stable and widely used.
 
 We highly encourage you to **use Docusaurus v2 over Docusaurus v1**, as Docusaurus v1 will be deprecated soon.
-
-
 
 **Use Docusaurus v2 if:**
 

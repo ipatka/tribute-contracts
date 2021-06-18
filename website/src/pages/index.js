@@ -33,13 +33,15 @@ function HomepageHeader() {
     </header>
   );
 }
-{/* <iframe
+{
+  /* <iframe
   className={styles.indexCtasGitHubButton}
   src="https://ghbtns.com/github-btn.html?user=facebook&amp;repo=docusaurus&amp;type=star&amp;count=true&amp;size=large"
   width={160}
   height={30}
   title="GitHub Stars"
-/>; */}
+/>; */
+}
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (

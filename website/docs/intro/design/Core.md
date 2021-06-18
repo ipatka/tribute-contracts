@@ -3,7 +3,7 @@ id: core
 title: Core
 ---
 
-The core contracts serve as the spine for the TributeDAO framework and act as a DAO registry, creating a digital version of "division of corporations." These contracts compose the DAO itself, and make it cheaper and easier to deploy a DAO. These contracts directly change the DAO state through the interactions with different adapters and/or extensions. 
+The core contracts serve as the spine for the TributeDAO framework and act as a DAO registry, creating a digital version of "division of corporations." These contracts compose the DAO itself, and make it cheaper and easier to deploy a DAO. These contracts directly change the DAO state through the interactions with different adapters and/or extensions.
 
 :::important
 
@@ -13,7 +13,7 @@ A core contract never pulls information directly from the external world. For th
 
 There are three core contracts as part of the TributeDAO framework, including a:
 
-- **[DaoRegistry](/docs/core/dao-registry)**: tracks the state changes of the DAO, only adapters with proper **[Access Flags](#access-control-layer) can alter the DAO state.
+- **[DaoRegistry](/docs/core/dao-registry)**: tracks the state changes of the DAO, only adapters with proper \*\*[Access Flags](#access-control-layer) can alter the DAO state.
 - CloneFactory: creates a clone of the DAO based on its address.
 - **[DaoFactory](/docs/core/dao-factory)**: creates, initializes, and adds adapter configurations to the new DAO, and uses the CloneFactory to reduce the DAO creation transaction costs.
 - DaoConstants: defines all the constants used by the DAO contracts, and implements some helper functions to manage the Access Flags.

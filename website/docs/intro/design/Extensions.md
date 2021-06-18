@@ -21,7 +21,6 @@ We currently have some extensions in place that can help you to launch your DAO:
 
 - **[Executor](/docs/extensions/executor-extension)**: adds to the DAO the capability of executing delegated calls to other contracts, including contracts that are not part of the DAO, using the EVM instruction `delegatecall`.
 
-
 Each extension is tied to a particular DAO address. You can not share the exact same extension between different DAOs, otherwise you would be sharing your DAO state, hence other DAOs would be able to modify it. When we launch a new DAO, we deploy a new instance of each extension, by using the Clone Factory pattern, and then we associate that new instance address to your new DAO. With this approach we ensure that the DAO and Extensions states are consistent, and not shared.
 
 On the other hand, the **[Adapters](/docs/adapters)** may use the extensions to keep track of additional state changes in the DAO, for instance: updating the bank balance, onboarding new members using NFT tributes, etc.

@@ -79,7 +79,6 @@ Then execute the following script:
 
 Tribute exists thanks to its contributors. There are many ways you can participate and help build high quality software. Check out the [contribution guide]!
 
-
 ## Problems? {#problems}
 
 Ask for help on [Stack Overflow](https://stackoverflow.com/questions/tagged/docusaurus), on our [GitHub repository](https://github.com/facebook/docusaurus) or [Twitter](https://twitter.com/docusaurus).
